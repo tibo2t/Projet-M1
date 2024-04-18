@@ -1,4 +1,3 @@
-# Utilisation de l'image Debian stable comme base
 FROM debian:stable
 
 # Installation des paquets nécessaires pour WordPress et MySQL
