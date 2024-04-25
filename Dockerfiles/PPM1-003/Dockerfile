@@ -16,4 +16,4 @@ RUN apt-get clean && \
 EXPOSE 80 443
 
 # Démarrer GitLab lors du lancement du conteneur
-ENTRYPOINT (/opt/gitlab/embedded/bin/runsvdir-start &) && sleep 10 && gitlab-ctl reconfigure && tail -f /dev/null
+CMD ["/bin/bash", "-c", "/opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure & wait"]
