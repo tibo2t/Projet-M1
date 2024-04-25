@@ -1,13 +1,28 @@
-# traefik.yaml
+# Fichier de configuration Traefik
 
-api:
-  dashboard: true
+# Configurations générales
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
 
+# Configuration des entrées
 entryPoints:
   web:
     address: ":80"
+  traefik:
+    address: ":8080"
 
-providers:
-  docker:
-    endpoint: "unix:///var/run/docker.sock"
-    exposedByDefault: false
+# Configuration des routages
+http:
+  routers:
+    my-router:
+      rule: "Host(`example.com`)"
+      service: my-service
+      entryPoints:
+        - web
+
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+          - url: "http://backend-service"
