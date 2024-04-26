@@ -10,9 +10,9 @@ RUN wget --quiet -O /tmp/traefik.tar.gz "https://github.com/traefik/traefik/rele
     rm -f /tmp/traefik.tar.gz; \
     chmod +x /usr/local/bin/traefik
 
-COPY traefik.yml /etc/traefik/traefik.yml
+COPY traefik.yml /etc/traefik/traefik.yaml
 
 EXPOSE 80 8080
 
 ENTRYPOINT ["/usr/local/bin/traefik"]
-CMD ["--configfile=/etc/traefik/traefik.yml"]
+CMD ["--configfile=/etc/traefik/traefik.yaml"]
