@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -y wget
 RUN wget -qO- https://wordpress.org/latest.tar.gz | tar xvz -C /var/www/html --strip-components=1
 RUN chown -R www-data:www-data /var/www/html
 
+#Configuration de la base de données  
+RUN mv /var/www/html/wp-config-sample.php  /var/www/html/wp-config.php
 
 # Suppression de l'index.html par défaut
 RUN rm /var/www/html/index.html
