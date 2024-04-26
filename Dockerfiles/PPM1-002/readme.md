@@ -10,3 +10,7 @@ Afin de le faire on utilise:
 - Télécharger WordPress en utilisant l'archive officielle.
 - Exposons les ports 80 pour permettre l'accès à Apache, WordPress
 
+### Fichier de configuration de base de données
+- wp-config.php
+
+
