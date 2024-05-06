@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: mon_wordpress
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql_database
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: mysql_database
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: ProjetM1
+
+  mysql_database:
+    image: mon_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ProjetM1
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: ProjetM1
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
