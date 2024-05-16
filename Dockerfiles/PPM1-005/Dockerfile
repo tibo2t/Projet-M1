@@ -3,8 +3,6 @@ FROM debian:stable
 RUN apt-get update && \
     apt-get install -y mariadb-server
 
-COPY init.sql /docker-entrypoint-initdb.d/
-
 ENV MARIADB_PASSWORD=ProjetM1
 ENV MARIADB_DATABASE=wordpress
 ENV MARIADB_USER=wordpress
