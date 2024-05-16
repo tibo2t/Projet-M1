@@ -5,10 +5,16 @@ RUN apt-get update && \
 
 COPY init.sql /docker-entrypoint-initdb.d/
 
-ENV MYSQL_ROOT_PASSWORD=ProjetM1
-ENV MYSQL_DATABASE=wordpress
-ENV MYSQL_USER=wordpress
-ENV MYSQL_PASSWORD=ProjetM1
+ENV MARIADB_PASSWORD=ProjetM1
+ENV MARIADB_DATABASE=wordpress
+ENV MARIADB_USER=wordpress
+
+RUN /etc/init.d/mariadb start && \
+    sleep 25 && \
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${MARIADB_DATABASE};" && \
+    mysql -u root -e "CREATE USER 'wordpress'@'%' IDENTIFIED BY '${MARIADB_PASSWORD}';" && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress.* TO '${MARIADB_USER}'@'%';" && \
+    /etc/init.d/mariadb stop
 
 EXPOSE 3306
 
