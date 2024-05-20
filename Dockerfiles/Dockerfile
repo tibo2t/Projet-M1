@@ -1,18 +1,25 @@
 FROM debian:stable
 
-RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+# Installer les dépendances nécessaires
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN wget --quiet -O /tmp/traefik.tar.gz "https://github.com/traefik/traefik/releases/download/v2.6.0/traefik_v2.6.0_linux_amd64.tar.gz"; \
-    tar xzvf /tmp/traefik.tar.gz -C /usr/local/bin traefik; \
-    rm -f /tmp/traefik.tar.gz; \
-    chmod +x /usr/local/bin/traefik
+# Définir la version de Traefik à installer
+ENV TRAEFIK_VERSION v2.10.1
 
-COPY traefik.yml /etc/traefik/traefik.yaml
+# Télécharger et installer Traefik
+RUN curl -L https://github.com/traefik/traefik/releases/download/${TRAEFIK_VERSION}/traefik_${TRAEFIK_VERSION}_linux_amd64.tar.gz -o traefik.tar.gz && \
+    tar -xzvf traefik.tar.gz && \
+    mv traefik /usr/local/bin/traefik && \
+    rm traefik.tar.gz
 
-EXPOSE 80 8080
+# Copier le fichier de configuration
+COPY traefik.toml /etc/traefik/traefik.toml
 
-ENTRYPOINT ["/usr/local/bin/traefik"]
-CMD ["--configfile=/etc/traefik/traefik.yaml"]
+# Exposer les ports pour Traefik
+EXPOSE 80
+
+# Commande par défaut pour lancer Traefik
+CMD ["traefik", "--configFile=/etc/traefik/traefik.toml"]
