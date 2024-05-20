@@ -1,0 +1,14 @@
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+
+  [entryPoints.dashboard]
+    address = ":8181" 
+
+[api]
+  dashboard = true
+  insecure = true  # Activation de l'accès non sécurisé au dashboard
+
+[providers]
+  [providers.docker]
+    endpoint = "unix:///var/run/docker.sock"

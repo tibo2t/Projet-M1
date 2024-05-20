@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  reverse-proxy:
+    restart: always
+    build: .
+    ports:
+      - "80:80"        # Port pour le trafic HTTP
+      - "8080:8080"    # Port pour le dashboard de Traefik
+    volumes:
+      - ./traefik.toml:/etc/traefik/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock  # Montage du socket Docker
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
