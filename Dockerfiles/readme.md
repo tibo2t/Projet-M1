@@ -25,7 +25,7 @@ Le `Dockerfile` est utilisé pour créer une image Docker personnalisée de Trae
 2. Installe les dépendances nécessaires (curl).
 3. Télécharge et installe la version spécifiée de Traefik.
 4. Copie le fichier de configuration `traefik.toml` dans l'image.
-5. Expose les ports nécessaires (80 pour HTTP et 443 pour HTTPS).
+5. Expose les ports nécessaires (80 pour HTTP).
 6. Définit la commande par défaut pour lancer Traefik avec le fichier de configuration spécifié.
 
 ### traefik.toml
