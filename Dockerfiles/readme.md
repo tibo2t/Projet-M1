@@ -38,7 +38,7 @@ Il suffit d'appliquer la commande suivante à la racine des fichiers qui comport
 
 ```bash
     docker-compose up -d
-    ```
+```
 
 Ensuite, vous pouvez accéder au traefik via l'adresse IP du container, et du port 8080. Vous pouvez personnaliser ceci via le fichier hosts de votre système d'exploitation.
 
