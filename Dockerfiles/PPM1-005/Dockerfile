@@ -3,6 +3,8 @@ FROM debian:stable
 RUN apt-get update && \
     apt-get install -y mariadb-server
 
+COPY 50-server.conf /etc/mysql/mariadb.conf.d/50-server.cnf
+
 ENV MARIADB_PASSWORD=ProjetM1
 ENV MARIADB_DATABASE=wordpress
 ENV MARIADB_USER=wordpress
