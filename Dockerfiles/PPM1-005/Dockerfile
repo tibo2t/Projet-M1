@@ -13,6 +13,6 @@ ENV MARIADB_USER=wordpress
 
 EXPOSE 3306
 
-RUN chmod o+x init.sh
+RUN chmod u+x init.sh
 
 CMD ["./init.sh"]
