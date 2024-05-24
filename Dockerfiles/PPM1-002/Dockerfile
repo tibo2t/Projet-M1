@@ -42,3 +42,6 @@ EXPOSE 80
 
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
+
+#CMD ["apachectl", "-D", "FOREGROUND"]
+#ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
