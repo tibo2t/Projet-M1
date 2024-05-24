@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 ENV DB_NAME=wordpress
 ENV DB_USER=wordpress
 ENV DB_PASSWORD=test
+ENV DB_HOST=localhost
 
 # Créez le répertoire wordpress
 RUN mkdir -p /var/www/html/
