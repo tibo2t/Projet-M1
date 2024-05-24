@@ -12,5 +12,7 @@ Afin de le faire on utilise:
 
 ### Fichier de configuration de base de données
 - wp-config.php
+- docker-entrypoint.sh
+
 
 
