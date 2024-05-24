@@ -16,7 +16,7 @@ Afin de le faire on utilise:
 
 ### A prendre en consideration
 - La partie DB_HOST doit être modifiée directement dans le Dockerfile (mettre votre adresse IP) ou lors du lancement du conteneur
-  avec 'docker run -d --name wordpress-container -e DB_HOST=<ip> -p 8081:80 wordpress'.
+  avec 'docker run -d --name wordpress-container -e DB_HOST=<ip> -p 8081:80 wordpress-image'.
 - Lancer le container avec ' docker run -d --name wordpress-container -p 8081:80 wordpress '
 
 
