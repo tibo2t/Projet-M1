@@ -2,7 +2,7 @@
 
 ## Présentation du rôle de la branche PPM1-008
 
-La branche PPM1-008 vise à mettre en place un reverse proxy Traefik de manière conteneurisée à l'aide de Docker Compose. Cette configuration inclut également le déploiement de services WordPress avec load balancing et une base de données MariaDB. Traefik est un reverse proxy et un load balancer moderne conçu pour faciliter le déploiement d'applications microservices.
+La branche PPM1-008 vise à mettre en place un reverse proxy Traefik de manière conteneurisée à l'aide de Docker Compose. Cette configuration inclut également le déploiement de services WordPress avec load balancing et une base de données MariaDB. 
 
 ## Prérequis
 
