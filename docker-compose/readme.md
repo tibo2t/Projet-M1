@@ -104,7 +104,7 @@ Le script `init.sh` est exécuté au démarrage du conteneur MariaDB. Voici ce q
     ENV DB_PASSWORD=ProjetM1
     ```
 
-2. Lancez les services avec Docker Compose :
+2. Lancez les services avec Docker Compose à la racine du projet :
 
     ```bash
     docker-compose up -d
