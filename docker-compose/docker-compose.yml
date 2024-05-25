@@ -3,19 +3,22 @@ version: '3.7'
 services:
   reverse-proxy:
     restart: always
-    build: .
+    build:
+      context: ./traefik
+    container_name: traefik
     ports:
       - "80:80"
-      - "8080:8080"    # Port pour le dashboard de Traefik
+      - "8080:8080"
     volumes:
-      - ./traefik.toml:/etc/traefik/traefik.toml
-      - ./dynamic.yml:/etc/traefik/dynamic.yml
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml
       - /var/run/docker.sock:/var/run/docker.sock  # Montage du socket Docker
     networks:
       - web
 
   wp-1:  # Premier conteneur WordPress
-    build: ./wp
+    build:
+      context: ./wp
     container_name: wp-1
     ports:
       - "8082:80"
@@ -27,7 +30,8 @@ services:
       - "traefik.http.services.wp.loadbalancer.server.port=80"
 
   wp-2:  # Deuxième conteneur WordPress
-    build: ./wp
+    build:
+      context: ./wp
     container_name: wp-2
     ports:
       - "8083:80"
@@ -39,7 +43,8 @@ services:
       - "traefik.http.services.wp.loadbalancer.server.port=80"
 
   mariadb:  # Service MariaDB
-    build: ./db
+    build:
+      context: ./db
     container_name: mariadb
     ports:
       - "3306:3306"
