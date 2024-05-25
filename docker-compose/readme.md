@@ -38,7 +38,7 @@ Le fichier `Dockerfile` est utilisé pour construire l'image Docker de Traefik. 
 
 Le fichier `traefik.toml` contient la configuration statique de Traefik. Il spécifie les points d'entrée, active le tableau de bord API et configure les fournisseurs de configuration dynamique.
 
-### dynamic.yml
+### traefik/dynamic.yml
 
 Le fichier `dynamic.yml` contient la configuration dynamique de Traefik. Il spécifie les routeurs et les services pour le load balancing de WordPress.
 
