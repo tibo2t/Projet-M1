@@ -28,21 +28,19 @@ RUN apt-get update && apt-get install -y wget
 RUN wget -qO- https://wordpress.org/latest.tar.gz | tar xvz -C /var/www/html --strip-components=1
 RUN chown -R www-data:www-data /var/www/html
 
-#Configuration de la base de données
-RUN mv /var/www/html/wp-config-sample.php  /var/www/html/wp-config.php
+# Configuration de la base de données
+RUN mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 COPY wp-config.php /var/www/html/wp-config.php
 COPY docker-entrypoint.sh .
 
 RUN chmod +x docker-entrypoint.sh
 
+# Copie du fichier health.php
+COPY health.php /var/www/html/health.php
+
 # Suppression de l'index.html par défaut
 RUN rm /var/www/html/index.html
 
-
 EXPOSE 80
 
-
 ENTRYPOINT ["./docker-entrypoint.sh"]
-
-#CMD ["apachectl", "-D", "FOREGROUND"]
-#ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
