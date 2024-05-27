@@ -5,10 +5,12 @@ http:
       service: "wp-service"
       entryPoints:
         - "http"
-
   services:
     wp-service:
       loadBalancer:
+        healthCheck:
+          path: "/health.php"
+          interval: "10s"
         servers:
           - url: "http://wp-1:80"
           - url: "http://wp-2:80"
