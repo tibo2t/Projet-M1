@@ -15,7 +15,13 @@ RUN apt-get update && apt-get install -y \
     php-zip \
     mariadb-server \
     wget \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install flask --break-system-packages
+RUN pip3 install psutil --break-system-packages
+
 
 ENV DB_NAME=wordpress
 ENV DB_USER=wordpress
@@ -31,6 +37,7 @@ RUN chown -R www-data:www-data /var/www/html
 
 # Configurer WordPress
 COPY wp-config.php /var/www/html/wp-config.php
+COPY plugin.py .
 
 # Ajout du script d'entrée
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -40,6 +47,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN rm /var/www/html/index.html
 
 EXPOSE 80
+EXPOSE 5000
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apachectl", "-D", "FOREGROUND"]
