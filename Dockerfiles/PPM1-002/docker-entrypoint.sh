@@ -8,6 +8,8 @@ mysql -u root -e "CREATE USER IF NOT EXISTS '${DB_USER}'@'localhost' IDENTIFIED 
 mysql -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
+python3 plugin.py &
+
 set -e
 
 # Remplacer les variables du fichier wp-config.php par les valeurs d'environnement
