@@ -21,8 +21,8 @@ RUN apt-get update && apt-get install -y influxdb2
 EXPOSE 8086
 
 # Initialisation d'InfluxDB
-COPY init-influxdb.sh /usr/local/bin/init-influxdb.sh
-RUN chmod +x /usr/local/bin/init-influxdb.sh
+COPY init-influxdb.sh /usr/local/bin/influxdb.sh
+RUN chmod +x /usr/local/bin/influxdb.sh
 
 
-ENTRYPOINT ["sh", "/usr/local/bin/init-influxdb.sh"]
+ENTRYPOINT ["sh", "/usr/local/bin/influxdb.sh"]
