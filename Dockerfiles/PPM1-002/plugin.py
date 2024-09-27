@@ -41,7 +41,7 @@ def get_metrics():
         return "Métriques pas encore disponibles, réessayez dans quelques instants.", 503
 
     # Retourner les métriques sous forme de texte (ou JSON si vous préférez)
-    response = f"system_metrics,cpu_usage={metrics_data['cpu_usage']},ram_usage={metrics_data['ram_usage']}"
+    response = f"\n# HELP system_metrics_cpu_usage CPU usage in percentage.\n# TYPE system_metrics_cpu_usage gauge\nsystem_metrics_cpu_usage {metrics_data['cpu_usage']}\n# HELP system_metrics_ram_usage RAM usage in percentage.\n# TYPE system_metrics_ram_usage gauge\nsystem_metrics_ram_usage {metrics_data['ram_usage']}"
     return response
 
 if __name__ == '__main__':
