@@ -18,11 +18,12 @@ RUN echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] h
 # Installe InfluxDB 2.x
 RUN apt-get update && apt-get install -y influxdb2
 
+# Expose InfluxDB port
 EXPOSE 8086
 
-# Initialisation d'InfluxDB
+# Copie les scripts nécessaires
 COPY influxdb.sh /usr/local/bin/influxdb.sh
-RUN chmod +x /usr/local/bin/influxdb.sh
-
+COPY scraper.sh /usr/local/bin/scraper.sh
+RUN chmod +x /usr/local/bin/influxdb.sh /usr/local/bin/scraper.sh
 
 ENTRYPOINT ["sh", "/usr/local/bin/influxdb.sh"]
