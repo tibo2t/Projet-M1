@@ -12,7 +12,8 @@ Afin de le faire on utilise:
 
 ### Fichier de configuration 
 - influxdb.sh
+- scraper.sh
 
 ### A prendre en consideration
 - docker build -t influxdb-image .
-- sudo docker run -d --name influxdb-container -e INFLUX_USERNAME=** -e INFLUX_PASSWORD=** -e INFLUX_ORG=** -e INFLUX_BUCKET=wordpress  -e INFLUX_TOKEN=wordpress  -p 8086:8086   influxdb-image
+- sudo docker run -d --name influxdb-container -e INFLUX_USERNAME=** -e INFLUX_PASSWORD=** -e INFLUX_ORG=wordpress -e INFLUX_BUCKET=wordpress  -e INFLUX_TOKEN=wordpress -e HOST="**" -p 8086:8086   influxdb-image
