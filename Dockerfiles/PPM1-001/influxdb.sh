@@ -4,7 +4,7 @@
 influxd &
 INFLUX_PID=$!
 
-# Attendre que InfluxDB démarre complètement
+
 sleep 10
 
 # Vérifier si l'organisation et le bucket existent déjà
@@ -17,6 +17,9 @@ if ! influx org list | grep -q "${INFLUX_ORG}"; then
     --token "${INFLUX_TOKEN}" \
     --force
 fi
+
+# Lancer le scraper
+sh /usr/local/bin/scraper.sh &
 
 # Attendre la fin du processus InfluxDB
 wait $INFLUX_PID
