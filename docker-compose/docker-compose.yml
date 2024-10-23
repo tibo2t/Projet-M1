@@ -79,7 +79,8 @@ services:
       - INFLUX_ORG=wordpress
       - INFLUX_BUCKET=wordpress
       - INFLUX_TOKEN=wordpress
-      - HOST="localhost"
+      - HOST=10.118.7.131
+      - PORT=5000
 
 networks:
   web:
