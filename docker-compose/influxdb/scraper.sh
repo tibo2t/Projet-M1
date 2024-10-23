@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Variables d'environnement
-URL="${HOST}:${PORT}/metrics"
+URL="${HOST}:5000/metrics"
 
 # Envoyer les données à InfluxDB
 send_to_influxdb() {
