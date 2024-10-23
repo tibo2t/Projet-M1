@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre expérience sur le projet M1 DevOps</title>
+    <link rel="stylesheet" href="code.css">
+</head>
+<body>
+    <header>
+        <h1>Retour d'expérience sur le projet</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github.html">Projet GitHub</a></li>
+                <li><a href="experiences.html">Expériences</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+          <h2>Gestion des tâches</h2>
+          <p>Nous avons utilisé Trello pour assurer le suivi des différentes étapes du projet. Les tâches étaient assignées à chaque membre de l’équipe,  de plus, chaque tâche sur Trello correspondait à une branche dans GitHub, ce qui a facilité le développement collaboratif et le suivi des modifications. </p>
+          <img src="image/trello.png" alt="Trello" width="500" class="thumbnail">
+        </section>
+        
+        <section>
+          <h2>Les défis et leçons</h2>
+          <ul>
+              <li><strong>Orchestration des conteneurs :</strong> Nous avons beaucoup appris sur la gestion et l'orchestration des conteneurs, ce qui est crucial pour des projets similaires à l'avenir.</li>
+              
+          </ul>
+      </section>
+      <div id="overlay"></div>
+      <div id="modal">
+        <button id="closeButton">✖</button> 
+        <img id="largeImage" src="" alt="">
+      </div>
+    
+      <script>
+        const thumbnails = document.querySelectorAll('.thumbnail'); 
+        const overlay = document.getElementById('overlay');
+        const modal = document.getElementById('modal');
+        const largeImage = document.getElementById('largeImage');
+        const closeButton = document.getElementById('closeButton');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.onclick = function() {
+                largeImage.src = thumbnail.src; 
+                overlay.style.display = 'block'; 
+                modal.style.display = 'block'; 
+            }
+        });
+
+        closeButton.onclick = function() {
+            overlay.style.display = 'none'; 
+            modal.style.display = 'none'; 
+        }
+
+        overlay.onclick = function() {
+            overlay.style.display = 'none'; 
+            modal.style.display = 'none'; 
+        }
+      </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Projet M1 DevOps</p>
+        <p>Yasmine ABBAS, Adem BARRAN, Thibault JUBERT</p>
+    </footer>
+</body>
+</html>

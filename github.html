@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation du projet M1 DevOps</title>
+    <link rel="stylesheet" href="code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Présentation des Pages et du  GitHub</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="github.html">Projet Github</a></li>
+                <li><a href="experiences.html">Experience</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+      <section>
+        <h2>Le Projet Github</h2>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/main" target="_blank">Github main</a>
+      </section>
+
+      <section>
+        <h2>Gitlab</h2>
+        <p>Mettre en place GitLab pour héberger le code et exécuter les tests automatisés (CI/CD) du blog.</p>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/PPM1-003/Dockerfiles/PPM1-003" target="_blank">Github Gitlab</a>
+        <img src="" alt="" width="500" class="thumbnail">
+      </section>
+
+      <section>
+        <h2>WordPress</h2>
+        <p>Mettre en place WordPress</p>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/PPM1-002/Dockerfiles/PPM1-002" target="_blank">Github WordPress</a>
+        <img src="image/wordp.png" alt="WordPress" width="500" class="thumbnail">
+      </section>
+
+      <section>
+        <h2>InfluxDB</h2>
+        <p>Mettre en place InfluxDB pour collecter et afficher les métriques CPU et RAM de WordPress.</p>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/PPM1-001/Dockerfiles/PPM1-001" target="_blank">Github InfluxDB</a>
+        <img src="image/influxdb.png" alt="InfluxDB" width="500" class="thumbnail">
+      </section>
+
+      <section>
+        <h2>Traefik</h2>
+        <p>Mettre en place un reverse proxy Traefik de manière conteneurisée.</p>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/PPM1-004/Dockerfiles" target="_blank">Github Traefik</a>
+        <img src="image/Tra.png" alt="Traefik" width="500" class="thumbnail">
+      </section>
+
+      <section>
+        <h2>MariaDB</h2>
+        <p>Mettre en place MariaDB</p>
+        <a href="https://github.com/tibo2t/Projet-M1/tree/PPM1-005/Dockerfiles/PPM1-005" target="_blank">Github MySQL</a>
+        <img src="" alt="" width="500" class="thumbnail">
+      </section>
+
+      <div id="overlay"></div>
+      <div id="modal">
+        <button id="closeButton">✖</button> 
+        <img id="largeImage" src="" alt="">
+      </div>
+    
+      <script>
+        const thumbnails = document.querySelectorAll('.thumbnail'); 
+        const overlay = document.getElementById('overlay');
+        const modal = document.getElementById('modal');
+        const largeImage = document.getElementById('largeImage');
+        const closeButton = document.getElementById('closeButton');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.onclick = function() {
+                largeImage.src = thumbnail.src; 
+                overlay.style.display = 'block'; 
+                modal.style.display = 'block'; 
+            }
+        });
+
+        closeButton.onclick = function() {
+            overlay.style.display = 'none'; 
+            modal.style.display = 'none'; 
+        }
+
+        overlay.onclick = function() {
+            overlay.style.display = 'none'; 
+            modal.style.display = 'none'; 
+        }
+      </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Projet M1 DevOps</p>
+        <p>Yasmine ABBAS, Adem BARRAN, Thibault JUBERT</p>
+    </footer>
+</body>
+</html>
