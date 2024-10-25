@@ -1,0 +1,97 @@
+version: '3.7'
+
+services:
+  reverse-proxy:
+    restart: always
+    image: thibaultju/ppm1-traefik:v1
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`traefik.local`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.wp.rule=Host(`wp.local`)"
+      - "traefik.http.services.wp.loadbalancer.server.port=80"
+      - "traefik.http.services.wp.loadbalancer.healthCheck.path=/health.php"
+      - "traefik.http.services.wp.loadbalancer.healthCheck.interval=10s"
+
+  gitlab:
+    image: thibaultju/ppm1-gitlab:v1
+    container_name: gitlab
+    ports:
+      - "81:80"
+      - "4443:443"
+
+  wp-1:
+    image: thibaultju/ppm1-wordpress:v1
+    container_name: wp-1
+    ports:
+      - "8082:80"
+      - "5000:5000"
+    networks:
+      - web
+      - backend
+    labels:
+      - "traefik.enable=true"
+
+  wp-2:
+    image: thibaultju/ppm1-wordpress:v1
+    container_name: wp-2
+    ports:
+      - "8083:80"
+      - "5001:5000"
+    networks:
+      - web
+      - backend
+    labels:
+      - "traefik.enable=true"
+
+  mariadb:
+    image: thibaultju/ppm1-mariadb:v1
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - backend
+
+  influxdb:
+    image: thibaultju/ppm1-influxdb:v1
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=true"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    environment:
+      - INFLUX_USERNAME=wordpress
+      - INFLUX_PASSWORD=wordpress
+      - INFLUX_ORG=wordpress
+      - INFLUX_BUCKET=wordpress
+      - INFLUX_TOKEN=wordpress
+      - HOST=192.168.10.153
+      - PORT=5000
+
+networks:
+  web:
+    external: false
+  backend:
+    external: false
+
+volumes:
+  mariadb:
+    external: false
+  influxdb_data:
+    external: false
