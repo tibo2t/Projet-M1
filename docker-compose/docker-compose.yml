@@ -24,6 +24,14 @@ services:
       - "traefik.http.services.wp.loadbalancer.healthCheck.path=/health.php"
       - "traefik.http.services.wp.loadbalancer.healthCheck.interval=10s"
 
+  gitlab:  # Conteneur gitlab
+    build:
+      context: ./gitlab
+    container_name: gitlab
+    ports:
+      - "81:80"
+      - "4443:443"
+
   wp-1:  # Premier conteneur WordPress
     build:
       context: ./wp
@@ -79,7 +87,7 @@ services:
       - INFLUX_ORG=wordpress
       - INFLUX_BUCKET=wordpress
       - INFLUX_TOKEN=wordpress
-      - HOST=192.168.10.134
+      - HOST=192.168.1.128
       - PORT=5000
 
 networks:
